@@ -10,13 +10,31 @@ class App extends Component {
     ]
   }
 
+  switchButtonHandler = () => {
+    console.log("SwitchBTHld !");
+      this.setState( {
+        persons: [
+          { name: "Bcd", age: "29" }
+        ]
+      } 
+    )
+  }
+
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        {name: event.target.value, age:"30"}
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>Harsha </p>
-        <Person name="Hars" age="7" />
-        <button> Click here bitch! </button>
+        <Person name="Hars" age="7" changed={this.nameChangedHandler} />
+        <button onClick={this.switchButtonHandler}> Click here bitch! </button>
         <div>This is {this.state.persons[0].name} and is {this.state.persons[0].age} years </div>
       </div>
     );
