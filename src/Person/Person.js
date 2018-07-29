@@ -4,7 +4,7 @@ const person = (props) => {
 return ( 
 
     <div>
-        My name is {props.name} I'm {props.age} years old ! 
+        I'm {props.name} My age is {props.age} years ! 
         <input type="text" onChange={props.changed} />    
     </div>  
     
