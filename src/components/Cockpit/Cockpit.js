@@ -27,6 +27,7 @@ const cockpit =(props) => {
                 onClick={props.clicked}>
                 Toggle Persons
             </button>
+            <h6> Toggle Click Count: {props.toggleClicked} </h6>
         </Aux>
     );
 }

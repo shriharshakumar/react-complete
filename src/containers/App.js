@@ -4,7 +4,8 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Persons from '../components/Persons/Persons'
 import Person from '../components/Persons/Person/Person';
 import Cockpit from '../components/Cockpit/Cockpit'
-import WithClass from '../hoc/WithClass'
+import withClass from '../hoc/withClass'
+import Aux from '../hoc/Auxiliary';
 
 class App extends Component {
 
@@ -19,7 +20,8 @@ class App extends Component {
         { id: '3', name: 'ABCD', age: 26 }
       ],
       otherState: 'some other value',
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     }
   }
 
@@ -68,7 +70,12 @@ class App extends Component {
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow });
+    this.setState((prevState, props) => { 
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      };
+    });
   }
 
   render() {
@@ -88,18 +95,19 @@ class App extends Component {
     } 
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <Cockpit 
           title={this.props.title}
           showPersons = {this.state.showPersons}
           persons = {this.state.persons}
           clicked = {this.togglePersonsHandler}
+          toggleClicked = {this.state.toggleClicked}
         />
         {persons}
-      </WithClass> 
+      </Aux>
     );
     
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
