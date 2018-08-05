@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Persons from '../components/Persons/Persons'
+import Persons from '../components/Persons/Persons';
 import Person from '../components/Persons/Person/Person';
 import Cockpit from '../components/Cockpit/Cockpit'
 import withClass from '../hoc/withClass'
 import Aux from '../hoc/Auxiliary';
+import PropTypes from 'prop-types';
 
 class App extends Component {
 
@@ -108,6 +109,13 @@ class App extends Component {
     );
     
   }
+}
+
+Person.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  click: PropTypes.func,
+  changed: PropTypes.func 
 }
 
 export default withClass(App, classes.App);
