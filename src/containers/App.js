@@ -4,16 +4,31 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Persons from '../components/Persons/Persons'
 import Person from '../components/Persons/Person/Person';
 import Cockpit from '../components/Cockpit/Cockpit'
+import WithClass from '../hoc/WithClass'
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: '1', name: 'Div', age: 28 },
-      { id: '2', name: 'Hars', age: 29 },
-      { id: '3', name: 'ABCD', age: 26 }
-    ],
-    otherState: 'some other value',
-    showPersons: false
+
+  constructor(props) {
+    super(props);
+    
+    console.log("[App.js] Inside constructor");
+    this.state = {
+      persons: [
+        { id: '1', name: 'Div', age: 28 },
+        { id: '2', name: 'Hars', age: 29 },
+        { id: '3', name: 'ABCD', age: 26 }
+      ],
+      otherState: 'some other value',
+      showPersons: false
+    }
+  }
+
+  componentWillMount(){
+    console.log("[App.js] Inside componentWillMount")
+  }
+
+  componentDidMount() {
+    console.log("[App.js] Inside componentWillMount")
   }
 
   switchNameHandler = (newName) => {
@@ -57,7 +72,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("[App.js] Inside render")
     let persons = null;
 
     if (this.state.showPersons) {
@@ -73,7 +88,7 @@ class App extends Component {
     } 
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <Cockpit 
           title={this.props.title}
           showPersons = {this.state.showPersons}
@@ -81,7 +96,7 @@ class App extends Component {
           clicked = {this.togglePersonsHandler}
         />
         {persons}
-      </div> 
+      </WithClass> 
     );
     
   }
